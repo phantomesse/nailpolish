@@ -8,10 +8,6 @@
 </head>
 <body>
 
-<header>
-Nail Polish Collection
-</header>
-
 <%= yield %>
 
 </body>

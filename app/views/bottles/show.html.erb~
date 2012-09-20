@@ -20,6 +20,8 @@
   $<%= @bottle.price/100 %>.<%= @bottle.price%100 %>
 </p>
 
+<%= image_tag(@bottle.brand + "_" + @bottle.name + ".png", :alt => "rss feed") %>
+
 <img src="<%= asset_path('nailpolish/' + @bottle.brand + '_' + @bottle.name + '.png') %>" />
 
 <%= link_to 'Edit', edit_bottle_path(@bottle) %> |

@@ -1,8 +1,10 @@
 class User
   include MongoMapper::Document
 
-  key :name, String
+  key :first_name, String
+  key :last_name, String
+  key :owned_bottles, Array
 
-  has_many :bottles
+  many :bottles, :in => :owned_bottles
 
 end
