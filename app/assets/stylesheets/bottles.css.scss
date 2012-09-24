@@ -1,3 +1,106 @@
 // Place all the styles related to the Bottles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+  font-family: 'SignifyLite';
+  src: url('signifylite/signifylite-webfont.eot');
+  src: url('signifylite/signifylite-webfont.eot?#iefix') format('embedded-opentype'),
+       url('signifylite/signifylite-webfont.woff') format('woff'),
+       url('signifylite/signifylite-webfont.ttf') format('truetype'),
+       url('signifylite/signifylite-webfont.svg#SignifyLite') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bottle_listing {
+  display: inline-block;
+  margin: 20px;
+  position: relative;
+  background: rgba(255,255,255,0.5);
+  text-align: left;
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+  width: 400px;
+  height: 120px;
+  h1 {
+    margin: 0px 0px 0px 0px;
+    padding: 15px 0px 0px 0px;
+    color: #333;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    text-transform: lowercase;
+  }
+  h2 {
+    margin: 0px;
+    padding: 5px;
+    color: #444;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    text-transform: lowercase;
+  }
+  p {
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+  }
+  img {
+    float: left;
+    margin-right: 10px;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    width: 120px; height: 120px;
+  }
+}
+
+.bottle_commands {
+  margin: 0px 10px 0px 0px;
+  padding: 0px;
+  position: absolute; bottom: 0px; right: 0px;
+  li {
+    display: inline-block;
+    margin: 0px;
+    padding: 0px 1px 4px 1px;
+    position: relative;
+    text-align: center;
+    width: 25px;
+    cursor: pointer;
+  }
+  a {
+    color: #FFF;
+    font: 20px 'SignifyLite';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  }
+}
+.command_show a:hover {
+  color: #278DA0;
+}
+
+.command_edit a:hover {
+  color: #82A027;
+}
+
+.command_delete a:hover {
+  color: #BA1E4A;
+}
+
+#add_bottle {
+  display: inline-block;
+  margin: 20px;
+  position: relative; top: -8px;
+  background: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+  height: 120px;
+  p {
+    margin: 0px 0px 0px 0px;
+    padding: 50px 10px;
+  }
+  a {
+    color: #FFF;
+    font-size: 100px;
+    font-weight: bold;
+    &:hover {
+      color: #FFF;
+      text-shadow: 0px 0px 10px rgba(255,255,255,0.5);
+    }
+  }
+}

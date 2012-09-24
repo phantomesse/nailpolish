@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<% bottles = Bottle.where(:company_id => @company.id).all
+
+bottles.each do |bottle| %>
+<p><%= bottle.name %></p>
+
+<% end %>
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

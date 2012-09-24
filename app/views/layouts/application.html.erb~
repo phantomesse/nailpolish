@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nailpolish</title>
+  <title>Nail Polish Collection</title>
+  <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Henny+Penny" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<header>
+  <h1>Nail Polish Collection</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><%= link_to 'Users', users_path %></li>
+    <li><%= link_to 'Bottles', bottles_path %></li>
+    <li><%= link_to 'Companies', companies_path %></li>
+  </ul>
+</nav>
 
 <%= yield %>
 

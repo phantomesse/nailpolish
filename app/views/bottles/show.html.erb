@@ -2,7 +2,7 @@
 
 <p>
   <b>Brand:</b>
-  <%= @bottle.brand %>
+  <%= @bottle.company.name %>
 </p>
 
 <p>
@@ -17,10 +17,8 @@
 
 <p>
   <b>Price:</b>
-  $<%= @bottle.price/100 %>.<%= @bottle.price%100 %>
+  <%= get_price(@bottle.price) %>
 </p>
-
-<img src="<%= asset_path('nailpolish/' + @bottle.brand + '_' + @bottle.name + '.png') %>" />
 
 <%= link_to 'Edit', edit_bottle_path(@bottle) %> |
 <%= link_to 'Back', bottles_path %>

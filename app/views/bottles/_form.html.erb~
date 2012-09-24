@@ -13,16 +13,24 @@
 
   <div class="field">
     <%= f.label :brand %><br />
-    <%= f.text_field :brand %>
+    <%= f.collection_select :brand, Company.all, :id, :name %>
   </div>
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  
   <div class="field">
     <%= f.label :color %><br />
     <%= f.text_field :color %>
   </div>
+  
   <div class="field">
     <%= f.label :price %><br />
     <%= f.number_field :price %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

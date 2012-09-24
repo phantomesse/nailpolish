@@ -1,29 +1,27 @@
-<h1>Listing bottles</h1>
-
-<table>
-  <tr>
-    <th>Brand</th>
-    <th>Name</th>
-    <th>Color</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Listing Bottles</h1>
 
 <% @bottles.each do |bottle| %>
-  <tr>
-    <td><%= bottle.brand %></td>
-    <td><%= bottle.name %></td>
-    <td><%= bottle.color %></td>
-    <td><%= bottle.price %></td>
-    <td><%= link_to 'Show', bottle %></td>
-    <td><%= link_to 'Edit', edit_bottle_path(bottle) %></td>
-    <td><%= link_to 'Destroy', bottle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<div class="bottle_listing">
+  <img src="<%= asset_path('bottles/' + get_image_path(bottle)) %>" />
+  <h1><%= bottle.name %></h1>
+  <h2>by <%= bottle.company.name %></h2>
+  <p><b>Color</b>: <%= bottle.color %><br />
+  <b>Price</b>: <%= get_price(bottle.price) %></p>
+  
+  <ul class="bottle_commands">
+    <li class="command_show">
+      <%= link_to 'I', bottle, {:title => "Show"} %>
+    </li>
+    <li class="command_edit">
+      <%= link_to 'Y', edit_bottle_path(bottle), {:title => "Edit"} %>
+    </li>
+    <li class="command_delete">
+      <%= link_to 'D', bottle, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  </ul>
+</div>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Bottle', new_bottle_path %>
+<div id="add_bottle">
+  <p><%= link_to '+', new_bottle_path %></p>
+</div>
