@@ -10,10 +10,7 @@
   <%= @user.last_name %>
 </p>
 
-<p>
-  <b>Owned Bottles:</b>
-  <%= @user.owned_bottles %>
-</p>
+<%= @user.
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

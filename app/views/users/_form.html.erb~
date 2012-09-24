@@ -21,11 +21,6 @@
     <%= f.text_field :last_name %><br />
   </div>
   
-  <div class="field">
-    <%= f.label :company_id %><br />
-    <%= f.collection_select :company_id, Company.all, :id, :name %>
-  </div>
-  
   <div class="actions">
     <%= f.submit %>
   </div>

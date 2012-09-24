@@ -4,15 +4,15 @@ class User
   key :first_name, String, :required => true
   key :last_name, String
   
+  many :bottles  
+  
   def bottles
-    Bottle.where(:have_ids => id).all
+    Bottle.where(:user_ids => self.id).all
   end
   
   def add_bottle(bottle)
-    bottle.haves << self
+    bottle.user_ids << self
     bottle.save!
   end
-  
-  many :bottles
 
 end
