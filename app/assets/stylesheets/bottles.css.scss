@@ -2,17 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@font-face {
-  font-family: 'SignifyLite';
-  src: url('signifylite/signifylite-webfont.eot');
-  src: url('signifylite/signifylite-webfont.eot?#iefix') format('embedded-opentype'),
-       url('signifylite/signifylite-webfont.woff') format('woff'),
-       url('signifylite/signifylite-webfont.ttf') format('truetype'),
-       url('signifylite/signifylite-webfont.svg#SignifyLite') format('svg');
-  font-weight: normal;
-  font-style: normal;
+.bottle {
+  display: inline-block;
+  margin: 10px 0px 0px 20px;
+  padding: 0px;
+  background: url('background_header_gradient.png') 0px 20px repeat-x, url('background_stone_texture.png');
+  border: 1px solid rgba(0,0,0,0.5);
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+  width: 140px;
+  height: 140px;
+  
+  img {
+    position: relative; top: 9px; left: 9px;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+    width: 120px;
+    height: 120px;
+  }
 }
 
+
+// OLD STUFF STARTS HERE
 .bottle_listing {
   display: inline-block;
   margin: 20px;

@@ -1,3 +1,17 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$white: #FFF;
+$lime: #82a027;
+
+h1 a {
+  margin-left: 5px;
+  color: $white;
+  font: 0.8em 'SignifyLite';
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  &:hover {
+    color: $lime;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+  }
+}

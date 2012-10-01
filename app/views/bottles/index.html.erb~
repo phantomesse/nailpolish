@@ -2,7 +2,7 @@
 
 <% @bottles.each do |bottle| %>
 <div class="bottle_listing">
-  <img src="<%= asset_path('nailpolish/' + get_image_path(bottle)) %>" />
+  <img src="<%= asset_path('bottles/' + bottle.image_path) %>" />
   <h1><%= bottle.name %></h1>
   <h2>by <%= bottle.company.name %></h2>
   <p><b>Color</b>: <%= bottle.color %><br />

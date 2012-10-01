@@ -3,6 +3,9 @@ module BottlesHelper
   price_string = price.to_s
   dollar = price_string[0,price_string.length-2]
   cents = price_string[price_string.length-2, price_string.length]
+  if dollar.length == 0
+    dollar = "0"
+  end
   price_string = "$".concat(dollar).concat(".").concat(cents)
   return price_string
  end

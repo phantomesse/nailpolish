@@ -23,7 +23,7 @@
   
   <div class="actions">
     <%= submit_tag "Login" %>
-    <%= link_to 'Create an account.', signup_path %>
+    <span id="input_text_link"><%= link_to 'Create an account.', signup_path %></span>
   </div>
 
 <% end %>
