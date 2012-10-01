@@ -1,9 +1,12 @@
 Nailpolish::Application.routes.draw do
   root :to => "home#index"
   get "home/index"
-    
+  
+  #match 'session#destroy' => 'logout', :as => :logout
+  #match 'session#create' => 'login', :as => :login
+  #match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  
   get "login" => "session#create", :as => "login"
-  get "logout" => "session#destroy", :as => "logout"
 
   resources :session
   resources :users
