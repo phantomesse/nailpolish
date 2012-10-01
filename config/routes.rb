@@ -2,9 +2,10 @@ Nailpolish::Application.routes.draw do
   root :to => "home#index"
   get "home/index"
     
-  get "login" => "session#create", :as => "login"
+  get "login" => "session#new", :as => "login"
   get "logout" => "session#destroy", :as => "logout"
-
+  get "signup" => "users#new", :as => "signup"
+  
   resources :session
   resources :users
   resources :bottles

@@ -1,15 +1,8 @@
-<%
-    @user = User.first(:id => session[:user_id])
-    if @user.nil?
-%>
-  <div id="login_form">
-    <%= render '/session/form' %>
-  </div>
-<% end %>
+<div id="welcome" class="container ninecol">
+  <h1>Welcome to Varnishes</h1>
+  <p>Varnishes is a nail polish database where you can keep track of your bottle collection and explore other nail polish brands and colors.</p>
+</div>
 
-<h1>Welcome to Varnishes</h1>
-<p>Varnishes is a nail polish database where you can keep track of your ever-expanding nail polish collection.</p>
-
-<br />
-
-<h2>Recently Added Polishes</h2>
+<div id="login" class="container threecol">
+  <%= render '/session/form' %>
+</div>
