@@ -5,18 +5,25 @@
     <%= text_field_tag :first_name %><br />
   </div>
   
+  <br />
+  
   <div class="field">
     <%= label_tag :last_name %><br />
     <%= text_field_tag :last_name %><br />
   </div>
-
+  
+  <br />
+  
   <div class="field">
     <%= label_tag :email %><br />
     <%= email_field_tag :email %><br />
   </div>
   
+  <br />
+  
   <div class="actions">
-    <%= submit_tag %>
+    <%= submit_tag "Login" %>
+    <span id="signup"><%= link_to 'Create an account.', signup_path %></span>
   </div>
 
 <% end %>

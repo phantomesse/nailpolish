@@ -14,6 +14,7 @@
 $white: #FFF;
 $beige: #EAD0AA;
 $brown: #4E2E14;
+$turquoise: #24332C;
 
 html {
   width: 100%;
@@ -24,6 +25,7 @@ body {
   margin: 0px;
   padding: 0px;
   background: #FDB957 url('background_wood_texture.png');
+  color: $turquoise;
   font: 0.9em Verdana, Arial, Helvetica, sans-serif;
   border: 0px;
 }
@@ -39,10 +41,16 @@ h1 {
 p {
   margin: 0px;
   padding: 0px 20px 10px 20px;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
 }
 
 a {
+  color: $brown;
   text-decoration: none;
+  
+  &:hover {
+    color: $beige;
+  }
 }
 
 header {
@@ -84,7 +92,7 @@ header {
   }
   
   nav {
-    position: absolute; bottom: 0px; left: 300px;
+    position: absolute; bottom: 10px; left: 330px;
     font-size: 1em;
     line-height: 1.5;
   }
@@ -98,7 +106,7 @@ header {
   }
   
   #session_info {
-    position: absolute; bottom: 17px; right: 20px;
+    position: absolute; bottom: 13px; right: 20px;
     color: $beige;
     font-size: 0.8em;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
@@ -110,10 +118,42 @@ header {
   }
 }
 
+label {
+  margin: 0px;
+  padding: 0px 20px;
+  color: $brown;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+}
+
+input {
+  margin: 0px 20px;
+  padding: 0px;
+  max-width: 70%;
+}
+
+input[type=text], input[type=email] {
+  padding: 2px 5px;
+  background: rgba(0,0,0,0.3);
+  color: #FFF;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  border: 1px dashed rgba(255,255,255,0.5);
+  border-radius: 5px;
+}
+
+input[type=submit] {
+  padding: 1px 10px;
+}
+
+#signup {
+  margin: 0px; margin-left: -15px;
+  padding: 0px;
+  font-size: 0.8em;
+}
+
 .container {
-  display: inline;
-  margin: 20px; margin-top: 0px;
-  padding: 20px 0px;
+  padding: 10px 0px;
   background: rgba(255,255,255,0.3);
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.3);

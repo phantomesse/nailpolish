@@ -1,8 +1,16 @@
-<div id="welcome" class="container ninecol">
-  <h1>Welcome to Varnishes</h1>
-  <p>Varnishes is a nail polish database where you can keep track of your bottle collection and explore other nail polish brands and colors.</p>
-</div>
+<% @user = User.first(:id => session[:user_id]) %>
 
-<div id="login" class="container threecol">
-  <%= render '/session/form' %>
+<div class="row">
+  <div id="welcome" class="container <% if @user.nil? %> sevencol <% end %>">
+    <h1>Welcome to Varnishes</h1>
+    <p>Varnishes is a nail polish database where you can keep track of your bottle collection and explore other nail polish brands and colors.</p>
+  </div>
+  
+  <% if @user.nil? %>
+    <div id="login" class="container fivecol">
+      <h1>User Login</h1>
+      <p>You are currently not logged in.</p>
+      <%= render '/session/form' %>
+    </div>
+  <% end %>
 </div>
