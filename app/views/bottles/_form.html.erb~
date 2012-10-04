@@ -12,24 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :brand %><br />
-    <%= f.collection_select :brand, Company.all, :id, :name %>
+    <%= f.label :company_id %>
+    <%= f.collection_select :company_id, Company.all, :id, :name %><br />
   </div>
+  
+  <br />
   
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %><br />
   </div>
+  
+  <br />
   
   <div class="field">
     <%= f.label :color %><br />
-    <%= f.text_field :color %>
+    <% nailpolish_colors.each do |nailpolish_color| %>
+      <%= f.radio_button :color, nailpolish_color %>
+      <%= f.label(:color, nailpolish_color) %><br />
+    <% end %>
   </div>
+  
+  <br />
   
   <div class="field">
     <%= f.label :price %><br />
-    <%= f.number_field :price %>
+    <%= f.number_field :price %><br />
   </div>
+  
+  <br />
   
   <div class="actions">
     <%= f.submit %>

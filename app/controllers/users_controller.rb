@@ -83,4 +83,13 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def add_bottle
+    @user = User.find(params[:user_id])
+    @bottle = Bottle.find(params[:bottle_id])
+    @user.bottles << @bottle
+    @user.save
+    
+    redirect_to root_path
+  end
 end

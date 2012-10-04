@@ -40,7 +40,7 @@
       <br />
       
       <div class="actions">
-        <%= f.submit "Finish Editing" %>
+        <%= f.submit "Sign Up" %>
       </div>
     <% end %>
   </div>

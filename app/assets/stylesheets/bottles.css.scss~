@@ -2,117 +2,165 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "scaffolds.css.scss";
+
 .bottle {
+  $background-color: #5c3e14;
   display: inline-block;
   margin: 10px 0px 0px 20px;
   padding: 0px;
-  background: url('background_header_gradient.png') 0px 20px repeat-x, url('background_stone_texture.png');
+  position: relative;
+  background: $background-color url('background_wood_texture.png');
   border: 1px solid rgba(0,0,0,0.5);
-  border-radius: 20px;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
-  width: 140px;
-  height: 140px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+  width: 132px;
+  height: 132px;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: lighten($background-color, 20%);
+  }
   
   img {
-    position: relative; top: 9px; left: 9px;
+    position: relative; top: 5px; left: 5px;
     border: 1px solid rgba(0,0,0,0.5);
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
     width: 120px;
     height: 120px;
   }
-}
-
-
-// OLD STUFF STARTS HERE
-.bottle_listing {
-  display: inline-block;
-  margin: 20px;
-  position: relative;
-  background: rgba(255,255,255,0.5);
-  text-align: left;
-  border: 1px solid rgba(255,255,255,0.8);
-  border-radius: 5px;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
-  width: 400px;
-  height: 120px;
-  h1 {
-    margin: 0px 0px 0px 0px;
-    padding: 15px 0px 0px 0px;
-    color: #333;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-    text-transform: lowercase;
-  }
-  h2 {
-    margin: 0px;
-    padding: 5px;
-    color: #444;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-    text-transform: lowercase;
-  }
-  p {
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-  }
-  img {
-    float: left;
-    margin-right: 10px;
-    border-radius: 5px 0px 0px 5px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-    width: 120px; height: 120px;
-  }
-}
-
-.bottle_commands {
-  margin: 0px 10px 0px 0px;
-  padding: 0px;
-  position: absolute; bottom: 0px; right: 0px;
-  li {
-    display: inline-block;
-    margin: 0px;
-    padding: 0px 1px 4px 1px;
-    position: relative;
+  
+  .price {
+    padding: 2px 0px;
+    position: absolute; top: 0px; right: 0px;
+    background:  url('price_tag.png');
+    font-size: smaller;
     text-align: center;
-    width: 25px;
-    cursor: pointer;
-  }
-  a {
-    color: #FFF;
-    font: 20px 'SignifyLite';
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
-  }
-}
-.command_show a:hover {
-  color: #278DA0;
-}
-
-.command_edit a:hover {
-  color: #82A027;
-}
-
-.command_delete a:hover {
-  color: #BA1E4A;
-}
-
-#add_bottle {
-  display: inline-block;
-  margin: 20px;
-  position: relative; top: -8px;
-  background: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.8);
-  border-radius: 5px;
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
-  height: 120px;
-  p {
-    margin: 0px 0px 0px 0px;
-    padding: 50px 10px;
-  }
-  a {
-    color: #FFF;
-    font-size: 100px;
-    font-weight: bold;
-    &:hover {
-      color: #FFF;
-      text-shadow: 0px 0px 10px rgba(255,255,255,0.5);
+    width: 80px; height: 70px;
+    
+    span {
+      @include rotate(40deg);
+      display: inline-block;
+      margin: 0px auto;
+      position: relative; top: 10px; right: -15px;
+      font-weight: bold;
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+      text-align: center;
+      width: 100%;
     }
   }
+  
+  .name {
+    @include gradient-background(rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    padding: 5px 0px 8px 0px;
+    position: absolute; bottom: 0px; left: 0px;
+    color: #FFF;
+    font-size: smaller;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+    border-radius: 0px 0px 10px 10px;
+    width: 100%;
+  }
+}
+
+.bottle_listing {
+  margin-bottom: 30px;
+  position: relative;
+  
+  h2 a {
+    color: inherit;
+    
+    &:hover {
+      color: lighten($turquoise, 10%);
+    }
+  }
+  
+  img {
+    float: left;
+    margin: 0px 10px;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+  
+  .commands {
+    position: absolute; bottom: -20px; right: 20px;
+    list-style: none;
+    
+    li {
+      display: inline-block;
+      margin-left: 3px;
+      padding-bottom: 5px;
+      color: #FFF;
+      font: 1.3em SignifyLite;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-align: center;
+      border-radius: 10px 10px 20px 20px;
+      border: 2px solid rgba(0,0,0,0.5);
+      min-width: 40px;
+    }
+    
+    @mixin command-button($background-color) {
+      @include gradient-background($background-color, darken($background-color, 10%));
+      
+      &:hover {
+        @include gradient-background($background-color, lighten($background-color, 5%));
+      }
+    }
+    
+    li[id=back] {
+      @include command-button($blue);
+    }
+    
+    li[id=edit] {
+      @include command-button($lime);
+    }
+    
+    li[id=delete] {
+      @include command-button($red);
+    }
+  }
+
+}
+
+#sort {
+  span {
+    display: inline-block;
+    margin: 0px;
+    padding: 10px 0px 5px 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+  }
+}
+
+
+
+.nailpolish_color {
+    display: none;
+}
+ 
+.nailpolish_color + label {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+}
+ 
+.nailpolish_color:checked + label:after {
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 3px;
+    background: #99a1a7;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+    text-shadow: 0px;
+    left: 3px;
+    font-size: 32px;
 }

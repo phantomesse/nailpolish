@@ -40,7 +40,7 @@
   %>
     <div id="session_info">
       Logged in as
-      <%= link_to @user.first_name.concat(' ').concat(@user.last_name), @user %>
+      <%= link_to @user.name, @user %>
       | <%= link_to 'Logout', logout_path %>
     </div>
   <% end %>

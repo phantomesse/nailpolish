@@ -3,10 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 $white: #FFF;
-$beige: #EAD0AA;
-$brown: #4E2E14;
-$turquoise: #24332C;
-
 $lime: #82a027;
 
 h1 a {
@@ -18,4 +14,14 @@ h1 a {
     color: $lime;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
   }
+}
+
+.user {
+  background: rgba(0,0,0,0.5);
+  width: 120px;
+  height: 120px;
+}
+
+#delete_account {
+  margin-left: -10px;
 }

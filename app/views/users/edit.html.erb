@@ -1,6 +1,6 @@
 <div class="row">
   <div class="container">
-    <h1>Editing <%= @user.first_name.concat(' ').concat(@user.last_name) %></h1>
+    <h1>User Settings - <%= @user.name %></h1>
     <p>Please fill out the following information.</p>
     
     <%= form_for(@user) do |f| %>
@@ -39,6 +39,9 @@
       
       <div class="actions">
         <%= f.submit "Save" %>
+        <%= link_to @user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <input id="delete_account" type="submit" value="Delete Account" />
+        <% end %>
       </div>
     <% end %>
   </div>

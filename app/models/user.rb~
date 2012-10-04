@@ -3,9 +3,18 @@ class User
 
   key :first_name, String, :required => true
   key :last_name, String
-  key :email, String
+  key :email, String, :required => true
   
-    
   many :bottles
-
+  
+  def name
+    return "#{first_name} #{last_name}"
+  end
+  
+  before_create :downcase_fields
+  
+  def downcase_fields
+    email.downcase!
+  end
+  
 end

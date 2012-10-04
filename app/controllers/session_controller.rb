@@ -7,7 +7,7 @@ class SessionController < ApplicationController
   # look up user
   # if user exists with that email address
   def create
-    @user = User.first(:email => params[:email])
+    @user = User.first(:email => params[:email].downcase)
     if @user
       session[:user_id] = @user.id
       redirect_to root_path

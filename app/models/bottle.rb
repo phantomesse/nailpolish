@@ -7,7 +7,7 @@ class Bottle
   key :price, Integer
   
   belongs_to :company
-  
+    
   def price_string
     price_string = price.to_s
     dollar = price_string[0,price_string.length-2]
@@ -15,7 +15,7 @@ class Bottle
     if dollar.length == 0
       dollar = "0"
     end
-    price_string = "$".concat(dollar).concat(".").concat(cents)
+    price_string = "$#{dollar}.#{cents}"
     return price_string
   end
   

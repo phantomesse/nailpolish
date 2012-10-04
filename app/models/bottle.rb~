@@ -8,6 +8,12 @@ class Bottle
   
   belongs_to :company
   
+  scope :neutrals, where(:color => 'neutral')
+  scope :pinks, where(:color => 'pink')
+  scope :reds, where(:color => 'red')
+  scope :purples, where(:color => 'purple')
+  scope :bluegreens, where(:color => 'green')
+  
   def price_string
     price_string = price.to_s
     dollar = price_string[0,price_string.length-2]
@@ -15,7 +21,7 @@ class Bottle
     if dollar.length == 0
       dollar = "0"
     end
-    price_string = "$".concat(dollar).concat(".").concat(cents)
+    price_string = "$#{dollar}.#{cents}"
     return price_string
   end
   

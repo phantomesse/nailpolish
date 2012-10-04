@@ -1,24 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Brand:</b>
-  <%= @bottle.company.name %>
-</p>
+<div class="row">
 
-<p>
-  <b>Name:</b>
-  <%= @bottle.name %>
-</p>
+  <div class="container fourcol" style="float: right">
+    <h2>More from <%= @bottle.company.name %></h2>
+    
+    <% @bottles = @bottle.company.bottles %>
+    <%= render 'bottles' %>
+    
+  </div>
 
-<p>
-  <b>Color:</b>
-  <%= @bottle.color %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= get_price(@bottle.price) %>
-</p>
-
-<%= link_to 'Edit', edit_bottle_path(@bottle) %> |
-<%= link_to 'Back', bottles_path %>
+  <div class="container eightcol bottle_listing">
+    <img src="<%= asset_path('bottles/' + @bottle.image_path) %>" />
+  
+    <h1><%= @bottle.name %></h1>
+    <h2>by <%= link_to @bottle.company.name, @bottle.company %></h2>
+    
+    <br />
+    
+    <p>
+      <b>Color:</b>
+      <%= @bottle.color %> <br />
+      <b>Price:</b>
+      <%= @bottle.price_string %>
+    </p>
+    
+    <ul class="commands">
+      <%= link_to bottles_path do %>
+        <li id="back">9</li>
+      <% end %>
+      
+      <%= link_to edit_bottle_path(@bottle) do %>
+        <li id="edit">Y</li>
+      <% end %>
+      
+      <%= link_to @bottle, method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <li id="delete">D</li>
+      <% end %>
+    </ul>
+    
+  </div>
+  
+  <div class="container eightcol">
+    <h2>More <%= @bottle.color %> Polishes</h2>    
+    <%
+      Bottle.all(:color => @bottle.color).each do |bottle|
+      if bottle.id != @bottle.id
+    %>
+      <%= link_to bottle do %>
+        <div class="bottle">
+          <img src="<%= asset_path('bottles/' + bottle.image_path) %>" />
+          
+          <div class="price">
+            <span><%= bottle.price_string %></span>
+          </div>
+          
+          <div class="name">
+            <%= bottle.name %>
+          </div>
+          
+        </div>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+  
+  
+</div>

@@ -1,10 +1,12 @@
 Nailpolish::Application.routes.draw do
   root :to => "home#index"
   get "home/index"
-    
-  get "login" => "session#new", :as => "login"
-  get "logout" => "session#destroy", :as => "logout"
-  get "signup" => "users#new", :as => "signup"
+   
+  match "login" => "session#new", :as => "login" 
+  match "logout" => "session#destroy", :as => "logout"
+  match "signup" => "users#new", :as => "signup"
+  
+  match '/users/add_bottle', :controller => 'users', :action => 'add_bottle'
   
   resources :session
   resources :users

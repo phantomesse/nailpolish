@@ -1,3 +1,4 @@
+/* FONTS */
 @import url(http://fonts.googleapis.com/css?family=Kaushan+Script);
 
 @font-face {
@@ -11,10 +12,35 @@
   font-style: normal;
 }
 
+
+/* MIX-INS */
+@mixin gradient-background($top-color, $bottom-color) {
+  background-color: $top-color;
+  background-image: -webkit-gradient(linear, left top, left bottom, from($top-color), to($bottom-color));
+  background-image: -webkit-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -moz-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -o-linear-gradient(top, $top-color, $bottom-color);
+  background-image: linear-gradient(to bottom, $top-color, $bottom-color);
+}
+
+@mixin rotate($degree) {
+  transform: rotate($degree);
+  -ms-transform: rotate($degree);
+  -webkit-transform: rotate($degree);
+  -o-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+}
+
+/* VARIABLES */
 $white: #FFF;
 $beige: #EAD0AA;
 $brown: #4E2E14;
 $turquoise: #24332C;
+
+$red: #BA1E4A;
+$blue: #278DA0;
+$lime: #82A027;
+
 
 html {
   width: 100%;
@@ -141,17 +167,31 @@ input {
 }
 
 input[type=text], input[type=email] {
-  padding: 2px 5px;
-  background: rgba(0,0,0,0.3);
-  color: #FFF;
+  @include gradient-background(rgba(197,155,96,0.3), rgba(138,116,84,0.7));
+
+  padding: 3px 5px;
+  color: rgba(0,0,0,0.8);
   font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
   border: 1px dashed rgba(255,255,255,0.5);
   border-radius: 5px;
 }
 
-input[type=submit] {
-  padding: 1px 10px;
+input[type=submit], select, option {
+  @include gradient-background(lighten($turquoise, 40%), lighten($turquoise, 30%));
+  
+  padding: 3px 10px;
+  color: $turquoise;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.2);
+  border:none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+  &:hover, &:active {
+    @include gradient-background(lighten($turquoise, 20%), lighten($turquoise, 30%));
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+  }
 }
 
 #input_text_link {

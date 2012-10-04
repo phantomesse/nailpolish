@@ -1,27 +1,46 @@
-<h1>Listing Bottles</h1>
+<%
+  @sort_by = "color"
+%>
 
-<% @bottles.each do |bottle| %>
-<div class="bottle_listing">
-  <img src="<%= asset_path('bottles/' + bottle.image_path) %>" />
-  <h1><%= bottle.name %></h1>
-  <h2>by <%= bottle.company.name %></h2>
-  <p><b>Color</b>: <%= bottle.color %><br />
-  <b>Price</b>: <%= get_price(bottle.price) %></p>
-  
-  <ul class="bottle_commands">
-    <li class="command_show">
-      <%= link_to 'I', bottle, {:title => "Show"} %>
-    </li>
-    <li class="command_edit">
-      <%= link_to 'Y', edit_bottle_path(bottle), {:title => "Edit"} %>
-    </li>
-    <li class="command_delete">
-      <%= link_to 'D', bottle, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  </ul>
+<div class="row">
+  <div class="container ninecol">
+    <h1>Listing Bottles</h1>
+  </div>
+  <div id="sort" class="container threecol">
+    <span>Sort by</span>
+    <select>
+      <option value="none">None</option>
+      <option value="price">Price</option>
+      <option value="color">Color</option>
+    </select>
+  </div>
 </div>
+
+<% if @sort_by == "none" %>
+  <div class="row">
+    <div class="container">
+      <h2>All Bottles</h2>
+      <%= render 'bottle' %>
+      <br /><br />
+    </div>
+  </div>
 <% end %>
 
-<div id="add_bottle">
-  <p><%= link_to '+', new_bottle_path %></p>
-</div>
+<%
+  if @sort_by == "color"
+    nailpolish_colors.each do |nailpolish_color|
+    @bottles = Bottle.all(:color => nailpolish_color)
+    if @bottles.size > 0
+%>
+  <div class="row">
+    <div class="container">
+      <h2><%= nailpolish_color %> Varnishes</h2>
+      <%= render 'bottle' %> 
+      <br /><br /> 
+    </div>
+  </div>
+<%
+      end
+    end
+  end
+%>
