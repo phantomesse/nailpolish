@@ -1,5 +1,0 @@
-<div class="row">
-  <h1>User Login</h1>
-  <p>To access this site, you must be logged in.</p>
-  <%= render 'form' %>
-</div>
