@@ -2,9 +2,13 @@ class User
   include MongoMapper::Document
 
   key :first_name, String, :required => true
-  key :last_name, String
+  key :last_name, String, :required => true
   key :email, String, :required => true
-  
+
+  validates :first_name, :format => { :with => /\A[a-zA-Z]+\z/, :message => "can only contain letters" }
+  validates :last_name, :format => { :with => /\A[a-zA-Z]+\z/, :message => "can only contain letters" }
+  validates :email, :uniqueness => true
+
   many :bottles
   
   def name
