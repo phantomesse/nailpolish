@@ -1,6 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<div class="row">
+<div class="accent-wall">
+  <div class="container">
+    <div class="row">
+      <div class="span6 offset3">
+        <h1><%= @user.name %></h1>
+        <%= link_to edit_user_path(@user), :id => "actions-edit", :class => "btn" do %>
+          <i class="icon-pencil"></i>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container">
+
+  <div class="row">
+    <div class="span12">
+      <h1>Owned Nail Polishes</h1><br />
+      <%
+        @user.bottles.each do |bottle|
+      %>
+        <%= render 'bottles/bottle', :bottle => bottle %>
+      <% end %>
+    </div>
+  </div>
+  
+</div>
+
+<!--<div class="row">
   <div class="container">
     <h1>
       <%= @user.name %>
@@ -26,4 +57,4 @@
     <% end %>
     <br /><br />
   </div>
-</div>
+</div>-->

@@ -1,8 +1,8 @@
 <%= form_for(@bottle) do |f| %>
   <% if @bottle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bottle.errors.count, "error") %> prohibited this bottle from being saved:</h2>
-
+    <br />
+    <div class="alert alert-error alert-block">
+      <h4><%= pluralize(@bottle.errors.count, "error") %> prohibited this bottle from being saved:</h4>
       <ul>
       <% @bottle.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -19,25 +19,33 @@
   <br />
   
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %><br />
   </div>
   
   <br />
   
   <div class="field">
-    <%= f.label :color %><br />
+    <%= f.label :color %>
     <% nailpolish_colors.each do |nailpolish_color| %>
-      <%= f.radio_button :color, nailpolish_color %>
-      <%= f.label(:color, nailpolish_color) %><br />
+      <label class="radio">
+        <%= f.radio_button :color, nailpolish_color %>
+        <%= nailpolish_color %>
+      </label>
     <% end %>
   </div>
   
   <br />
   
   <div class="field">
-    <%= f.label :price %><br />
-    <%= f.number_field :price %><br />
+    <%= f.label :price %>
+    <span class="dollar-sign">$</span>
+    <% if @bottle.price.nil? %>
+      <%=text_field_tag :price_decimal, nil, :placeholder => "0.00" %>
+    <% else %>
+      <%=text_field_tag :price_decimal, @bottle.price_string[1..@bottle.price_string.length], :placeholder => "0.00" %>
+    <% end %>
+    <br />
   </div>
   
   <br />

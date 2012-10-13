@@ -1,0 +1,52 @@
+@mixin rotate($degree) {
+  -webkit-transform: rotate($degree);
+  -moz-transform: rotate($degree);
+  -ms-transform: rotate($degree);
+  -o-transform: rotate($degree);
+  transform: rotate($degree);
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+}
+
+@mixin gradient-background($top-color, $bottom-color) {
+  background-image: -webkit-gradient(linear, left top, left bottom, from($top-color), to($bottom-color));
+  background-image: -webkit-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -moz-linear-gradient(top, $top-color, $bottom-color);
+  background-image: -o-linear-gradient(top, $top-color, $bottom-color);
+  background-image: linear-gradient(to bottom, $top-color, $bottom-color);
+}
+
+@mixin icon-button($color) {
+    display: inline-block;
+    margin: 10px 5px 0px 0px;
+    padding: 3px 0px;
+    @include button-background($color);
+    font-size: 1.3em;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+    width: 35px;
+}
+
+@mixin button-background($color) {
+  background-color: rgba(255,255,255,0.2);
+  @include gradient-background(rgba(lighten($color, 10%), 0.8), rgba(darken($color, 20%), 0.5));
+  
+  &:hover {
+    background: rgba(darken($color, 10%), 0.8);
+  }
+}
+
+$beige: #DED1BF;
+$dark_beige: #8E8270;
+$pink: #F96965;
+$white: #FFF;
+$black: #333;
+
+$blue: #70C0CF;
+$green: #9ED05D;
+$red: #F3816F;

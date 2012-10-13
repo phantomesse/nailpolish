@@ -2,51 +2,42 @@
 <html>
 <head>
   <title>Nail Polish Collection</title>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<header>
-  <div id="logo">
-    <h1>Varnishes</h1>
-    <h2>a nail polish database</h2>
-  </div>
-  
-  <nav>
-    <ul>
-      <%
-        @link_names = [ "Home", "My Bottles", "Explore Bottles", "View All Users" ]
-        @link_paths = [ root_path, users_path, bottles_path, users_path ]
-        
-        @link_names.each do|name|
-          @index = @link_names.index(name);
-          @path = @link_paths[@index]
-          @margin_left = (-4)*(@index +1)*(@index +1) + (9)*(@index +1) + 10
-      %>
-      
-        <%= link_to @path do %>
-        <li style="margin-left: <%= @margin_left %>px"><%= name %></li>
-        <% end %>
-      
-      <% end %>
-    </ul>
-  </nav>
-  
-  <%
-    @user = User.first(:id => session[:user_id])
-    if @user
-  %>
-    <div id="session_info">
-      Logged in as
-      <%= link_to @user.name, @user %>
-      | <%= link_to 'Logout', logout_path %>
-    </div>
-  <% end %>
-</header>
+<div id="wrapper">
 
-<%= yield %>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        
+        <%= link_to "Varnishes", root_url, :class => "brand" %>
+        
+        <ul class="nav">
+          <%= raw menu_link_to("Home", "home", "index") %>
+          <%= raw menu_link_to("Explore Bottles", "bottles", "index") %>
+          <%= raw menu_link_to("Explore Users", "users", "index") %>
+        </ul>
+        
+        <%= render '/session/user' %>
+        
+      </div>
+    </div>
+  </div>
+
+  <br />
+  
+  
+  <%= yield %>
+  
+  <div class="push"></div>
+</div>
+
+<%= render '/layouts/footer' %>
 
 </body>
 </html>

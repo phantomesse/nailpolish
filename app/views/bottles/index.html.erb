@@ -1,46 +1,84 @@
-<%
-  @sort_by = "color"
-%>
-
-<div class="row">
-  <div class="container ninecol">
-    <h1>Listing Bottles</h1>
-  </div>
-  <div id="sort" class="container threecol">
-    <span>Sort by</span>
-    <select>
-      <option value="none">None</option>
-      <option value="price">Price</option>
-      <option value="color">Color</option>
-    </select>
-  </div>
-</div>
-
-<% if @sort_by == "none" %>
+<div class="container">
   <div class="row">
-    <div class="container">
-      <h2>All Bottles</h2>
-      <%= render 'bottles' %>
-      <br /><br />
+    <div class="span8">
+      <h1>Explore Bottles</h1>
+    </div>
+    <div class="pull-right">
+      <%= form_tag({:controller => "bottles", :action => "order_bottles"}) do %>
+        <%= select_tag(:cats, options_for_select([
+          ['Sort Bottles by Color', 'color'],
+          ['Sort Bottles by Price', 'price']
+        ], @order), :onchange => 'this.form.submit()') %>
+      <% end %>
     </div>
   </div>
-<% end %>
 
-<%
-  if @sort_by == "color"
-    nailpolish_colors.each do |nailpolish_color|
-    @bottles = Bottle.all(:color => nailpolish_color)
-    if @bottles.size > 0
-%>
-  <div class="row">
-    <div class="container">
-      <h2><%= nailpolish_color %> Varnishes</h2>
-      <%= render 'bottles' %> 
-      <br /><br /> 
+  <!-- SORT BY COLOR -->
+  <%
+    if @order == 'color'
+      nailpolish_colors.each do |nailpolish_color|
+        @bottles = Bottle.all(:color => nailpolish_color)
+        if @bottles.size > 0
+  %>
+    <div class="row">
+      <div class="span12">
+        <h2><%= nailpolish_color %></h2>
+        <% @bottles.each do |bottle| %>
+          <%= render 'bottle', :bottle => bottle %>
+        <% end %>
+        
+        <%= render 'add' %>      
+      </div>
     </div>
-  </div>
-<%
+    <br />
+  <%
+        end
       end
     end
-  end
-%>
+  %>
+
+  <!-- SORT BY PRICE -->
+  <% if @order == 'price' %>
+    <div class="row">
+      <div class="span12">
+        <h2>Under $1.00</h2>
+        <%
+          @bottles = Bottle.where(:price.lt => 100).sort(:price.asc).all
+          @bottles.each do |bottle|
+        %>
+          <%= render 'bottle', :bottle => bottle %>
+        <% end %>
+        
+        <%= render 'add' %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="span12">
+        <h2>Under $10.00</h2>
+        <%
+          @bottles = Bottle.where(:price.lt => 1000).where(:price.gte => 100).sort(:price.asc).all
+          @bottles.each do |bottle|
+        %>
+          <%= render 'bottle', :bottle => bottle %>
+        <% end %>
+        
+        <%= render 'add' %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="span12">
+        <h2>Over $10.00</h2>
+        <%
+          @bottles = Bottle.where(:price.gte => 1000).sort(:price.asc).all
+          @bottles.each do |bottle|
+        %>
+          <%= render 'bottle', :bottle => bottle %>
+        <% end %>
+        
+        <%= render 'add' %>
+      </div>
+    </div>
+  <% end %>
+</div>

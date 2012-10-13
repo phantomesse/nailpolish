@@ -2,11 +2,22 @@ class BottlesController < ApplicationController
   # GET /bottles
   # GET /bottles.json
   def index
+    @order = params[:order];
+    if @order.nil?
+      @order = "color"
+    end
+  
     @bottles = Bottle.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @bottles }
+    end
+  end
+  
+  def order_bottles
+    respond_to do |format|
+      format.html { redirect_to bottles_url + '?order=' + params[:cats] }
     end
   end
 
@@ -60,6 +71,8 @@ class BottlesController < ApplicationController
 
     respond_to do |format|
       if @bottle.update_attributes(params[:bottle])
+        @bottle.price = 100*params[:price_decimal].to_f
+        @bottle.save!
         format.html { redirect_to @bottle, notice: 'Bottle was successfully updated.' }
         format.json { head :no_content }
       else

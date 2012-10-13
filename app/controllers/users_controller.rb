@@ -84,12 +84,20 @@ class UsersController < ApplicationController
     end
   end
   
-  def add_bottle
-    @user = User.find(params[:user_id])
-    @bottle = Bottle.find(params[:bottle_id])
-    @user.bottles << @bottle
-    @user.save
+  # Toggles the ownership of a nail polish bottle
+  def own_bottle
+    @user = User.find(params[:user])
+    @bottle = Bottle.find(params[:bottle])
     
-    redirect_to root_path
+    if @user.bottles.find(@bottle.id).nil?
+      # Add bottle if does not own
+      @user.bottles << @bottle
+      @user.save
+    else
+      # Remove bottle if owned
+      @user.save
+    end
+    
+    redirect_to @bottle
   end
 end

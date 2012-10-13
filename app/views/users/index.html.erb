@@ -1,4 +1,23 @@
-<h1>Listing users</h1>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h1>Explore Users</h1>
+    </div>
+  </div>
+  
+  <% @users.each do |user| %>
+    <div class="row">
+      <div class="span12">
+        <%= link_to user do %>
+          <h2><%= user.name %></h2>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+</div>
+
+<!--<h1>Listing users</h1>
 
 <table>
   <tr>
@@ -20,4 +39,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', new_user_path %>-->

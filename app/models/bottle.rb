@@ -8,22 +8,6 @@ class Bottle
   
   belongs_to :company
 
-#  validate :color_cannot_be_blank
-
- # def color_cannot_be_blank
-#    is_proper_color = false
-#    nailpolish_colors.each do |nailpolish_color|
-#      if color == nailpolish_color
-#        is_proper_color = true
-#        break
-#      end
-#    end
-#    if (is_proper_color == false)
-#      errors.add(:color, "NOT PROPER!")
-  #  if color.blank?
-   #   errors.add(:color, "Where's my color?")
-  #end
-
   def price_string
     price_string = price.to_s
     dollar = price_string[0,price_string.length-2]

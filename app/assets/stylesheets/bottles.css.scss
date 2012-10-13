@@ -2,134 +2,107 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "scaffolds.css.scss";
+@import "variablemixins";
 
-.bottle {
-  $background-color: #5c3e14;
-  display: inline-block;
-  margin: 10px 0px 0px 20px;
-  padding: 0px;
-  position: relative;
-  background: $background-color url('background_wood_texture.png');
-  border: 1px solid rgba(0,0,0,0.5);
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
-  width: 132px;
-  height: 132px;
-  cursor: pointer;
+.actions-bottle {
+  position: absolute; top: 0px; right: 0px;
   
-  &:hover {
-    background-color: lighten($background-color, 20%);
-  }
-  
-  img {
-    position: relative; top: 5px; left: 5px;
-    border: 1px solid rgba(0,0,0,0.5);
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
-    width: 120px;
-    height: 120px;
-  }
-  
-  .price {
-    padding: 2px 0px;
-    position: absolute; top: 0px; right: 0px;
-    background:  url('price_tag.png');
-    font-size: smaller;
-    text-align: center;
-    width: 80px; height: 70px;
-    
-    span {
-      @include rotate(40deg);
-      display: inline-block;
-      margin: 0px auto;
-      position: relative; top: 10px; right: -15px;
-      font-weight: bold;
-      text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
-      text-align: center;
-      width: 100%;
-    }
-  }
-  
-  .name {
-    @include gradient-background(rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-    padding: 5px 0px 8px 0px;
-    position: absolute; bottom: 0px; left: 0px;
-    color: #FFF;
-    font-size: smaller;
-    text-align: center;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-    border-radius: 0px 0px 10px 10px;
+  #actions-own, #actions-want {
+    display: block;
+    margin-top: 10px;
+    padding: 4px 0px;
+    @include button-background($dark-beige);
+    color: $white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    font-size: 1.0em;
     width: 100%;
+  }
+  
+  #actions-back {
+    @include icon-button($blue);
+  }
+  
+  #actions-edit {
+    @include icon-button($green);
+  }
+  
+  #actions-delete {
+    @include icon-button($red);
   }
 }
 
-.bottle_listing {
-  margin-bottom: 30px;
+.add-bottle {
+  float: left;
+  color: $dark_beige;
+  padding: 45px 10px;
+  font-size: 5em;
+  cursor: pointer;
+}
+
+.show-bottle {
   position: relative;
-  
-  h2 a {
-    color: inherit;
-    
-    &:hover {
-      color: lighten($turquoise, 10%);
-    }
-  }
   
   img {
     float: left;
-    margin: 0px 10px;
-    border: 1px solid rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
-    border-radius: 10px;
+    margin-right: 20px;
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    max-height: 100%;
   }
-  
-  .commands {
-    position: absolute; bottom: -20px; right: 20px;
-    list-style: none;
-    
-    li {
-      display: inline-block;
-      margin-left: 3px;
-      padding-bottom: 5px;
-      color: #FFF;
-      font: 1.3em SignifyLite;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-      text-align: center;
-      border-radius: 10px 10px 20px 20px;
-      border: 2px solid rgba(0,0,0,0.5);
-      min-width: 40px;
-    }
-    
-    @mixin command-button($background-color) {
-      @include gradient-background($background-color, darken($background-color, 10%));
-      
-      &:hover {
-        @include gradient-background($background-color, lighten($background-color, 5%));
-      }
-    }
-    
-    li[id=back] {
-      @include command-button($blue);
-    }
-    
-    li[id=edit] {
-      @include command-button($lime);
-    }
-    
-    li[id=delete] {
-      @include command-button($red);
-    }
-  }
-
 }
 
-#sort {
-  span {
-    display: inline-block;
-    margin: 0px;
-    padding: 10px 0px 5px 20px;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
+
+.bottle {
+  float: left;
+  margin: 0px 20px 20px 0px;
+  padding: 0px;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.8);
+  border-radius: 10px 10px 0px 0px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.8;
+  
+  &:hover {
+    opacity: 1.0;
   }
+  
+  img {
+    border-radius: 10px 10px 0px 0px;
+  }
+  
+  figcaption {
+    position: absolute; bottom: -60px; left: 0px;
+    background: rgba(255,255,255,0.8);
+    text-align: center;
+    width: 100%;
+    @include transition(all 0.3s ease-in-out);
+  }
+  
+  &:hover figcaption {
+    bottom: 0px;
+  }
+  
+  .price {
+    position: absolute; top: 0px; right: 0px;
+    background: url('price_tag.png');
+    width: 80px; height: 80px;
+    
+    span {
+      display: inline-block;
+      position: absolute; top: 9px; right: -10px;
+      
+      font-size: smaller;
+      text-align: center;
+      width: 70px;
+      @include rotate(40deg);
+    }
+  }
+}
+
+.dollar-sign {
+  display: block;
+  padding: 4px 4px 4px 0px;
+  float: left;
 }
