@@ -10,10 +10,11 @@
       </ul>
     </div>
   <% end %>
+  
 
   <div class="field">
     <%= f.label :company_id %>
-    <%= f.collection_select :company_id, Company.all, :id, :name %><br />
+    <%= f.collection_select :company_id, Company.all, :id, :name %>
   </div>
   
   <br />
@@ -51,6 +52,6 @@
   <br />
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn" %>
   </div>
 <% end %>

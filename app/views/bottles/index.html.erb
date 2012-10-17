@@ -55,9 +55,23 @@
     <br />
     <div class="row">
       <div class="span12">
+        <h2>Under $5.00</h2>
+        <%
+          @bottles = Bottle.where(:price.lt => 500).where(:price.gte => 100).sort(:price.asc).all
+          @bottles.each do |bottle|
+        %>
+          <%= render 'bottle', :bottle => bottle %>
+        <% end %>
+        
+        <%= render 'add' %>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="span12">
         <h2>Under $10.00</h2>
         <%
-          @bottles = Bottle.where(:price.lt => 1000).where(:price.gte => 100).sort(:price.asc).all
+          @bottles = Bottle.where(:price.lt => 1000).where(:price.gte => 500).sort(:price.asc).all
           @bottles.each do |bottle|
         %>
           <%= render 'bottle', :bottle => bottle %>

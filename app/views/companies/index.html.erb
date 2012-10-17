@@ -1,3 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h1>Explore Companies</h1>
+    </div>
+  </div>
+  
+  <% @companies.each do |company| %>
+    <div class="row">
+      <div class="span12">
+        <%= link_to company do %>
+          <h2><%= company.name %></h2>
+          <img src="<%= asset_path('companies/' + company.image_path) %>" />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+</div>
+
 <h1>Listing companies</h1>
 
 <table>

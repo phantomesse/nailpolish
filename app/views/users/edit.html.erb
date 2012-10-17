@@ -17,31 +17,29 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :first_name %><br />
+        <%= f.label :first_name %>
         <%= f.text_field :first_name %><br />
       </div>
       
       <br />
       
       <div class="field">
-        <%= f.label :last_name %><br />
+        <%= f.label :last_name %>
         <%= f.text_field :last_name %><br />
       </div>
       
       <br />
       
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label :email %>
         <%= f.text_field :email %><br />
       </div>
       
       <br />
       
       <div class="actions">
-        <%= f.submit "Save" %>
-        <%= link_to @user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <input id="delete_account" type="submit" value="Delete Account" />
-        <% end %>
+        <%= f.submit "Save", :class => "btn" %>
+        <%= link_to "Delete Account", @user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn" %>
       </div>
     <% end %>
   </div>

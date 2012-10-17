@@ -6,7 +6,7 @@ Nailpolish::Application.routes.draw do
   match "logout" => "session#destroy", :as => "logout"
   match "signup" => "users#new", :as => "signup"
   
-  match '/users/own_bottle', :controller => 'users', :action => 'own_bottle'
+  match '/users/bottle_action', :controller => 'users', :action => 'bottle_action'
   match '/bottles/order_bottles', :controller => 'bottles', :action => 'order_bottles'
   
   resources :session

@@ -18,15 +18,15 @@
           
           <%
             @user = User.first(:id => session[:user_id])
-            if @user.bottles.find(@bottle.id).nil?
+            if @user.owned_bottle_ids.index(@bottle.id).nil?
           %>
-            <%= link_to "own", {:controller => 'users', :action => 'own_bottle', :user => @user, :bottle => @bottle}, :id => "actions-own", :class => "btn" %>
+            <%= link_to "own", {:controller => 'users', :action => 'bottle_action', :user => @user, :bottle => @bottle, :bottle_action => "own"}, :id => "actions-own", :class => "btn" %>
           <% else %>
-            <%= link_to "disown", {:controller => 'users', :action => 'own_bottle', :user => @user, :bottle => @bottle}, :id => "actions-own", :class => "btn" %>
+            <%= link_to "disown", {:controller => 'users', :action => 'bottle_action', :user => @user, :bottle => @bottle, :bottle_action => "disown"}, :id => "actions-own", :class => "btn" %>
           <% end %>
           
-          <%= link_to "want", bottles_path, :id => "actions-want", :class => "btn" %>
-          
+          <%= link_to_want(@user, @bottle) %>
+                    
           <%= link_to bottles_path, :id => "actions-back", :class => "btn" do %>
             <i class="icon-th"></i>
           <% end %>
@@ -58,6 +58,7 @@
       %>
         <%= render 'bottle', :bottle => bottle %>
       <% end %>
+      <%= render 'add' %>
     </div>
   </div>
   

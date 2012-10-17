@@ -20,9 +20,23 @@
 
   <div class="row">
     <div class="span12">
-      <h1>Owned Nail Polishes</h1><br />
+      <h1>Owned Nail Polishes</h1>
       <%
-        @user.bottles.each do |bottle|
+        @user.owned_bottle_ids.each do |bottle_id|
+          bottle = Bottle.find(bottle_id)
+      %>
+        <%= render 'bottles/bottle', :bottle => bottle %>
+      <% end %>
+    </div>
+  </div>
+  <br />
+  
+  <div class="row">
+    <div class="span12">
+      <h1>Wanted Nail Polishes</h1>
+      <%
+        @user.wanted_bottle_ids.each do |bottle_id|
+          bottle = Bottle.find(bottle_id)
       %>
         <%= render 'bottles/bottle', :bottle => bottle %>
       <% end %>
@@ -30,31 +44,3 @@
   </div>
   
 </div>
-
-<!--<div class="row">
-  <div class="container">
-    <h1>
-      <%= @user.name %>
-      <%= link_to 'Y', edit_user_path(@user) %>
-    </h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="container">
-    <h2>Nail Polishes that I Own</h2>
-    <% @user.bottles.each do |bottle| %>
-      <%= link_to bottle do %>
-        <div class="bottle">
-          <img src="<%= asset_path('bottles/' + bottle.image_path) %>" />
-          
-          <div class="price">
-            <span><%= bottle.price_string %></span>
-          </div>
-          
-        </div>
-      <% end %>
-    <% end %>
-    <br /><br />
-  </div>
-</div>-->

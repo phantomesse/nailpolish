@@ -39,6 +39,12 @@
   &:hover {
     background: rgba(darken($color, 10%), 0.8);
   }
+  
+  &.disabled {
+    background: rgba(lighten($color, 10%), 0.4);
+    color: darken($color, 10%);
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+  }
 }
 
 $beige: #DED1BF;

@@ -55,6 +55,8 @@ class BottlesController < ApplicationController
 
     respond_to do |format|
       if @bottle.save
+        @bottle.price = 100*params[:price_decimal].to_f
+        @bottle.save!
         format.html { redirect_to @bottle, notice: 'Bottle was successfully created.' }
         format.json { render json: @bottle, status: :created, location: @bottle }
       else
