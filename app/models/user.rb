@@ -7,6 +7,8 @@ class User
   key :owned_bottle_ids, Array
   key :wanted_bottle_ids, Array
   
+  many :selections
+  
   validates :first_name, :format => { :with => /\A[a-zA-Z]+\z/, :message => "can only contain letters" }
   validates :last_name, :format => { :with => /\A[a-zA-Z]+\z/, :message => "can only contain letters" }
   validates :email, :uniqueness => true

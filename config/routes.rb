@@ -1,4 +1,6 @@
 Nailpolish::Application.routes.draw do
+  resources :selections
+
   root :to => "home#index"
   get "home/index"
    

@@ -28,7 +28,7 @@ $(document).ready(function() {
   
   // Fix broken images
   var image_path = 'rails.png';
-  alert(image_path);
+  //alert(image_path);
   $('img').one('error', function() {
     this.src = image_path;
   });
