@@ -5,7 +5,7 @@ class Bottle
   key :name, String, :required => true
   key :color, String
   key :price, Integer
-  
+    
   belongs_to :company
 
   def price_string
@@ -20,7 +20,7 @@ class Bottle
   end
   
   def image_path
-    return "#{simplify_string(company.name)}_#{simplify_string(name)}.png".downcase
+    return "bottles/#{simplify_string(company.name)}_#{simplify_string(name)}.png".downcase
   end
   
   def simplify_string(string)

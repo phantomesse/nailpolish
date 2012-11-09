@@ -1,8 +1,9 @@
 class Selection
   include MongoMapper::Document
 
-  key :name, String
+  key :name, String, :required => true
   key :bottle_ids, Array
+  key :user_id, ObjectId
   
   belongs_to :user
   

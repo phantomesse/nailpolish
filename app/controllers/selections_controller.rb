@@ -1,4 +1,6 @@
 class SelectionsController < ApplicationController
+  skip_before_filter :require_user, :only => [:index, :show]
+  
   # GET /selections
   # GET /selections.json
   def index
@@ -26,11 +28,7 @@ class SelectionsController < ApplicationController
   def new
     @selection = Selection.new
 
-    respond_to do |format|
-      @user = User.find(session[:user_id]) if session[:user_id]
-      @user.selections << @selection
-      @user.save!
-      
+    respond_to do |format|      
       format.html # new.html.erb
       format.json { render json: @selection }
     end
@@ -45,9 +43,18 @@ class SelectionsController < ApplicationController
   # POST /selections.json
   def create
     @selection = Selection.new(params[:selection])
-
+    @selection.user_id = session[:user_id]
+    
     respond_to do |format|
       if @selection.save
+
+        @bottles_to_add = params["bottles"];
+        if (@bottles_to_add)
+          @bottles_to_add.each do |bottle_id|
+            @selection.add_bottle(Bottle.find(bottle_id))
+          end
+        end
+
         format.html { redirect_to @selection, notice: 'Selection was successfully created.' }
         format.json { render json: @selection, status: :created, location: @selection }
       else
@@ -61,6 +68,17 @@ class SelectionsController < ApplicationController
   # PUT /selections/1.json
   def update
     @selection = Selection.find(params[:id])
+    
+    @bottles_to_add = params["bottles"];
+    
+    @selection.bottle_ids.clear
+    if @bottles_to_add
+      @bottles_to_add.each do |bottle_id|
+        @selection.add_bottle(Bottle.find(bottle_id))
+      end
+    end
+    
+    @selection.user_id = session[:user_id]
 
     respond_to do |format|
       if @selection.update_attributes(params[:selection])
@@ -77,11 +95,32 @@ class SelectionsController < ApplicationController
   # DELETE /selections/1.json
   def destroy
     @selection = Selection.find(params[:id])
+    @user = User.find(@selection.user_id);
+    
     @selection.destroy
 
     respond_to do |format|
-      format.html { redirect_to selections_url }
+      format.html { redirect_to @user }
       format.json { head :no_content }
     end
   end
+  
+  def add_bottle
+    @selection = Selection.find(params[:selection])
+    @bottle = Bottle.find(params[:bottle])
+    
+    @selection.add_bottle(@bottle)
+    @selection.save!
+    redirect_to @bottle
+  end
+  
+  def remove_bottle
+    @selection = Selection.find(params[:selection])
+    @bottle = Bottle.find(params[:bottle])
+    
+    @selection.remove_bottle(@bottle)
+    @selection.save!
+    redirect_to @bottle
+  end
+  
 end

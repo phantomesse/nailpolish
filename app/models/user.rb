@@ -4,8 +4,6 @@ class User
   key :first_name, String, :required => true
   key :last_name, String, :required => true
   key :email, String, :required => true
-  key :owned_bottle_ids, Array
-  key :wanted_bottle_ids, Array
   
   many :selections
   
@@ -18,37 +16,19 @@ class User
   end
   
   before_save :downcase_fields
+  before_create :create_default_selections
+  before_destroy :delete_all_selections
   
   def downcase_fields
     email.downcase!
   end
   
-  def own_bottle(bottle)
-    if owned_bottle_ids.index(bottle.id).nil?
-      owned_bottle_ids << bottle.id
-      save!
-    end
+  def create_default_selections
+    return self.selections.create(:name => "Owned Nail Polishes")
   end
   
-  def disown_bottle(bottle)
-    if owned_bottle_ids.index(bottle.id)
-      owned_bottle_ids.delete(bottle.id)
-      save!
-    end
-  end
-  
-  def want_bottle(bottle)
-    if wanted_bottle_ids.index(bottle.id).nil?
-      wanted_bottle_ids << bottle.id
-      save!
-    end
-  end
-  
-  def unwant_bottle(bottle)
-    if wanted_bottle_ids.index(bottle.id)
-      wanted_bottle_ids.delete(bottle.id)
-      save!
-    end
+  def delete_all_selections
+    self.selections.delete_all
   end
   
 end

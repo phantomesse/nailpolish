@@ -27,12 +27,12 @@
   
   <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %><br />
+    <%= f.email_field :email %><br />
   </div>
   
   <br />
   
   <div class="actions">
-    <%= f.submit "Sign Up" %>
+    <%= f.submit "Sign Up", :class => "btn" %>
   </div>
 <% end %>

@@ -83,24 +83,4 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  # Toggles the ownership of a nail polish bottle
-  def bottle_action
-    @user = User.find(params[:user])
-    @bottle = Bottle.find(params[:bottle])
-    @bottle_action = params[:bottle_action]
-    
-    if @bottle_action == "own"
-      @user.unwant_bottle(@bottle)
-      @user.own_bottle(@bottle)
-    elsif @bottle_action == "disown"
-      @user.disown_bottle(@bottle)
-    elsif @bottle_action == "want"
-      @user.want_bottle(@bottle)
-    elsif @bottle_action == "unwant"
-      @user.unwant_bottle(@bottle)
-    end
-    
-    redirect_to @bottle
-  end
 end

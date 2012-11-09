@@ -17,30 +17,45 @@
 <br />
 
 <div class="container">
-
-  <div class="row">
-    <div class="span12">
-      <h1>Owned Nail Polishes</h1>
-      <%
-        @user.owned_bottle_ids.each do |bottle_id|
-          bottle = Bottle.find(bottle_id)
-      %>
-        <%= render 'bottles/bottle', :bottle => bottle %>
-      <% end %>
-    </div>
-  </div>
-  <br />
   
+  <% @selection = @user.selections.first(:name => "Owned Nail Polishes") %>
   <div class="row">
     <div class="span12">
-      <h1>Wanted Nail Polishes</h1>
+      <h1><%= @selection.name %></h1>
       <%
-        @user.wanted_bottle_ids.each do |bottle_id|
-          bottle = Bottle.find(bottle_id)
+        @selection.bottle_ids.each do |bottle_id|
+        bottle = Bottle.find(bottle_id)
       %>
         <%= render 'bottles/bottle', :bottle => bottle %>
       <% end %>
     </div>
   </div>
+  
+  <%
+    @user.selections.each do |selection|
+      if selection.name != "Owned Nail Polishes"
+  %>
+  <div class="row">
+    <div class="span12">
+      <h1>
+        <%= link_to selection.name, selection %>
+        <%= link_to selection, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="icon-trash"></i>
+        <% end %>
+      </h1>
+      <%
+        selection.bottle_ids.each do |bottle_id|
+        bottle = Bottle.find(bottle_id)
+      %>
+        <%= render 'bottles/bottle', :bottle => bottle %>
+      <% end %>
+    </div>
+  </div>
+  <%
+      end
+    end
+  %>
+  
+  <%= link_to 'New Selection', new_selection_path %>
   
 </div>

@@ -1,0 +1,22 @@
+<% if User.first(:id => session[:user_id]) %>
+  <ul class="nav">
+    <%= raw menu_link_to("Home", "home", "index") %>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        Explore
+        <b class="caret""></b>
+      </a>
+      <ul class="dropdown-menu">
+        <%= raw menu_link_to("Explore Bottles", "bottles", "index") %>
+        <%= raw menu_link_to("Explore Companies", "companies", "index") %>
+        <%= raw menu_link_to("Explore Users", "users", "index") %>
+      </ul>
+    </li>
+    <%= raw menu_link_to("Explore Selections", "selections", "index") %>
+  </ul>
+<% else %>
+  <ul class="nav">
+    <%= raw menu_link_to("Home", "home", "index") %>
+    <%= raw menu_link_to("Explore Selections", "selections", "index") %>
+  </ul>
+<% end %>

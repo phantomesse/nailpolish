@@ -25,12 +25,9 @@ $(document).ready(function() {
     setTimeout(function() {
       $('#notice').slideUp();
     }, 2000);
-  
-  // Fix broken images
-  var image_path = 'rails.png';
-  //alert(image_path);
-  $('img').one('error', function() {
-    this.src = image_path;
+    
+  $('#actions-selection').click(function() {
+    $('.actions-selection-choices').fadeIn();
   });
   
 });

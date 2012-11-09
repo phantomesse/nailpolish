@@ -6,7 +6,7 @@ class Company
   many :bottles
   
   def image_path
-    return "#{simplify_string(name)}.png".downcase
+    return "companies/#{simplify_string(name)}.png".downcase
   end
   
   def simplify_string(string)

@@ -5,16 +5,16 @@
     </div>
   </div>
   
-  <% @companies.each do |company| %>
-    <div class="row">
-      <div class="span12">
-        <%= link_to company do %>
-          <h2><%= company.name %></h2>
-          <img src="<%= asset_path('companies/' + company.image_path) %>" />
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <br />
+  
+  <div class="row">
+    <div class="span12">
+      <% @companies.each do |company| %>
+        <%= render 'company', :company => company %>
+      <% end %>
+  </div>
+  </div>
+  
   
 </div>
 

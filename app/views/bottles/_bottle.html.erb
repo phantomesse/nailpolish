@@ -1,7 +1,7 @@
 <%= link_to bottle do %>
   <figure class="bottle">
-
-    <img src="<%= asset_path('bottles/' + bottle.image_path) %>" />
+    
+    <%= raw bottle_img(bottle) %>
     
     <div class="price">
       <span><%= bottle.price_string %></span>

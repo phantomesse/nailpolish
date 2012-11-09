@@ -1,0 +1,26 @@
+<%= link_to selection do %>
+  <figure class="selection">
+    <figcaption>
+      <h2><%= selection.name %></h2>
+    </figcaption>
+    
+    <%
+      if selection.bottle_ids.size >= 4
+        $i = 0;
+        while $i < 4 do
+          bottle = Bottle.find(selection.bottle_ids[$i]);
+    %>
+      <%= raw bottle_img(bottle) %>
+    <%
+          $i = $i + 1;
+        end
+      else
+        selection.bottle_ids.each do |bottle_id|
+    %>
+      <%= raw bottle_img(Bottle.find(bottle_id)) %>
+    <%
+        end
+      end
+    %>
+  </figure>
+<% end %>

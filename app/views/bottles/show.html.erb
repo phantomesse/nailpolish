@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% @user = User.first(:id => session[:user_id]) %>
+
 <div class="accent-wall">
   <div class="container">
     <div class="row">
       <div class="span6 offset3 show-bottle">
-        <img src="<%= asset_path('bottles/' + @bottle.image_path) %>" />
+        <%= raw bottle_img(@bottle) %>
         
         <h1><%= @bottle.name %></h1>
         <h2>by <%= @bottle.company.name %></h2>
@@ -15,18 +17,9 @@
         </p>
         
         <div class="actions-bottle">
+          <%= link_to_own(@user, @bottle) %>
+          <a id="actions-selection" class="btn">add to selection</a>
           
-          <%
-            @user = User.first(:id => session[:user_id])
-            if @user.owned_bottle_ids.index(@bottle.id).nil?
-          %>
-            <%= link_to "own", {:controller => 'users', :action => 'bottle_action', :user => @user, :bottle => @bottle, :bottle_action => "own"}, :id => "actions-own", :class => "btn" %>
-          <% else %>
-            <%= link_to "disown", {:controller => 'users', :action => 'bottle_action', :user => @user, :bottle => @bottle, :bottle_action => "disown"}, :id => "actions-own", :class => "btn" %>
-          <% end %>
-          
-          <%= link_to_want(@user, @bottle) %>
-                    
           <%= link_to bottles_path, :id => "actions-back", :class => "btn" do %>
             <i class="icon-th"></i>
           <% end %>
@@ -39,7 +32,34 @@
             <i class="icon-trash"></i>
           <% end %>
         </div>
+        
       </div>
+      
+      <div class="actions-selection-choices span2">
+        <div class="triangle"></div>
+        <div class="inner">
+          <%
+            if @user.selections.size == 1
+          %>
+            <small>You don't have any selections!</small>
+            <br />
+          <%
+            else
+              @user.selections.each do |selection|
+                if selection.name != "Owned Nail Polishes"
+          %>
+                <%= link_to selection.name, {:controller => 'selections', :action => 'add_bottle', :selection => selection, :bottle => @bottle } %><br />
+          <%
+                end
+              end
+            end
+          %>
+          
+          <br />
+          <%= link_to 'New Selection', new_selection_path, :class => "btn" %>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -50,7 +70,7 @@
 
   <div class="row">
     <div class="span12">
-      <h1>Others by <%= @bottle.company.name %></h1><br />
+      <h1>Others by <%= link_to @bottle.company.name, @bottle.company %></h1><br />
       <%
         @company = Company.first(:name => @bottle.company.name)
         @bottles = @company.bottles

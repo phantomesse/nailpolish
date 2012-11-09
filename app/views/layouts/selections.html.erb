@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nail Polish Collection</title>
+  <title>Nail Polish Collection - BLAH</title>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -10,12 +10,13 @@
 <body>
 
 <div id="wrapper">
-
+  
+  
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         
-        <%= link_to "Varnishes", root_url, :class => "brand" %>
+        <%= link_to "Selections", {:controller => "selections", :action => "index"}, :class => "brand" %>
         
         <%= render '/layouts/nav' %>
         

@@ -1,10 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @selection.name %>
-</p>
+<div class="accent-wall">
+  <div class="container">
+    <div class="row">
+      <div class="span6 offset3">
+        <h1><%= @selection.name %></h1>
+        <%= link_to edit_selection_path(@selection), :id => "actions-edit", :class => "btn" do %>
+          <i class="icon-pencil"></i>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
+<br />
 
-<%= link_to 'Edit', edit_selection_path(@selection) %> |
-<%= link_to 'Back', selections_path %>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <%
+        @selection.bottle_ids.each do |bottle_id|
+        bottle = Bottle.find(bottle_id)
+      %>
+        <%= render 'bottles/bottle', :bottle => bottle %>
+      <% end %>
+    </div>
+  </div>
+</div>
