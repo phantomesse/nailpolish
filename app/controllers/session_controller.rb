@@ -12,7 +12,8 @@ class SessionController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      redirect_to login_path
+      #format.html { redirect_to login_path, notice: 'User was successfully updated.' }
+      redirect_to login_path, :notice => 'Incorrect login information.'
     end
   end
   

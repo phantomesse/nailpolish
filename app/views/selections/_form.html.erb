@@ -33,9 +33,10 @@
           @checked = ""
         end
     %>
-      <div class="bottle_checkbox">
+      <div class="bottle_checkbox <%=@checked%>">
         <input type="checkbox" name="bottles[]" value="<%= bottle.id %>" <%=@checked %>>
         <%= raw bottle_img(bottle) %>
+        <i class="icon-ok-circle"></i>
       </div>
     <% end %>
   </div>

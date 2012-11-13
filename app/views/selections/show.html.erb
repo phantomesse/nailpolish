@@ -4,7 +4,11 @@
   <div class="container">
     <div class="row">
       <div class="span6 offset3">
+        <% @user = User.find(@selection.user_id) %>
+      
         <h1><%= @selection.name %></h1>
+        <h2>by <%= link_to @user.name, @user %></h2>
+        
         <%= link_to edit_selection_path(@selection), :id => "actions-edit", :class => "btn" do %>
           <i class="icon-pencil"></i>
         <% end %>

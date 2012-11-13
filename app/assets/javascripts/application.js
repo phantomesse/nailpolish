@@ -17,6 +17,7 @@
 
 $(document).ready(function() {
   adjust();
+  $(window).resize(function() { adjust(); });
   
   /* NOTIFICATIONS */
   if ($('#notice').html() == '')
@@ -25,16 +26,24 @@ $(document).ready(function() {
     setTimeout(function() {
       $('#notice').slideUp();
     }, 2000);
-    
+  
+  /* Selection _form Checkboxes */
+  $('.bottle_checkbox').click(function() {
+    if ($(this).hasClass('checked')) {
+      $(this).children('input').prop('checked', false);
+      $(this).removeClass('checked');
+    }
+    else {
+      $(this).children('input').prop('checked', true);
+      $(this).addClass('checked');
+    }
+  });
+  
+  /* Bottle show.html selection action */
   $('#actions-selection').click(function() {
     $('.actions-selection-choices').fadeIn();
   });
-  
 });
-
-$(window).resize(function() {
-  adjust();
-})
 
 function adjust() {
   var padding_top = $('body').css('padding-top').substring(0,2);
