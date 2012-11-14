@@ -16,11 +16,19 @@ class User
   end
   
   before_save :downcase_fields
+  after_save :update_selections
   before_create :create_default_selections
   before_destroy :delete_all_selections
   
   def downcase_fields
     email.downcase!
+  end
+  
+  def update_selections
+    self.selections.each do |selection|
+      selection.set_public_url
+      selection.save!
+    end
   end
   
   def create_default_selections

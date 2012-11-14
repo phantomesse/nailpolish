@@ -12,6 +12,8 @@ Nailpolish::Application.routes.draw do
   match 'add_bottle', :controller => 'selections', :action => 'add_bottle'
   match 'remove_bottle', :controller => 'selections', :action => 'remove_bottle'
   
+  match "/selections/:user_name/:selection_name" => "selections#show"
+  
   resources :session
   resources :users
   resources :bottles

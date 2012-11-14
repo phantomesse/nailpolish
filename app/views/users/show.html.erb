@@ -39,7 +39,7 @@
   <div class="row">
     <div class="span12">
       <h1>
-        <%= link_to selection.name, selection %>
+        <%= link_to selection.name, '/selections/' + selection.public_url %>
         <%= link_to selection, method: :delete, data: { confirm: 'Are you sure?' } do %>
           <i class="icon-trash"></i>
         <% end %>

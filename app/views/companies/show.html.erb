@@ -1,17 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
+<div class="accent-wall">
+  <div class="container">
+    <div class="row">
+      <div class="span6 offset3">
+        <h1><%= @company.name %></h1>
+        
+        <%= link_to edit_company_path(@company), :id => "actions-edit", :class => "btn" do %>
+          <i class="icon-pencil"></i>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-<%
-  bottles = Bottle.where(:company_id => @company.id).all
-  bottles.each do |bottle|
-%>
-<p><%= bottle.name %></p>
+<br />
 
-<% end %>
-
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <%
+        bottles = Bottle.where(:company_id => @company.id).all
+        bottles.each do |bottle|
+      %>
+      
+      <%= render 'bottles/bottle', :bottle => bottle %>
+      
+      <% end %>
+    </div>
+  </div>
+</div>

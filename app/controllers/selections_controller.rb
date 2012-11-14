@@ -16,6 +16,11 @@ class SelectionsController < ApplicationController
   # GET /selections/1.json
   def show
     @selection = Selection.find(params[:id])
+    if @selection.nil?
+      @user_name = params[:user_name]
+      @selection_name = params[:selection_name]
+      @selection = Selection.first(:public_url => "#{@user_name}/#{@selection_name}")
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,6 +42,10 @@ class SelectionsController < ApplicationController
   # GET /selections/1/edit
   def edit
     @selection = Selection.find(params[:id])
+    
+    if session[:user_id] != @selection.user_id
+      redirect_to @selection, :notice => 'You cannot edit a selection that does not belong to you.'
+    end
   end
 
   # POST /selections

@@ -2,8 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variablemixins";
+
 .company {
-  display: inline-block;
+  float: left;
   margin: 0px 20px 20px 0px;
   padding: 0px;
   position: relative;
@@ -24,4 +26,12 @@
     text-align: center;
     width: 100%;
   }
+}
+
+.add-company {
+  float: left;
+  color: $dark_beige;
+  padding: 45px 10px;
+  font-size: 5em;
+  cursor: pointer;
 }

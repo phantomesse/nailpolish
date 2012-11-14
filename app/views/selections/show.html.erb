@@ -31,4 +31,11 @@
       <% end %>
     </div>
   </div>
+  
+  <div class="row">
+    <div class="span12">
+      <% @share_url = "#{request.protocol}#{request.host_with_port}/selections/#{@selection.public_url}" %>
+      <b>Share this selection</b>: <a href="<%= @share_url %>"><%= @share_url %></a>
+    </div>
+  </div>
 </div>
